@@ -1,8 +1,10 @@
 # Environment required
+```
 HOST_DB=
 PORT_DB=
 USER_DB=
 PASSWORD_DB=
+```
 
 # To run project
 ```sh
