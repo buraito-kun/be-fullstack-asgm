@@ -1,0 +1,226 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Student {
+  """The student id"""
+  studentid: Int!
+
+  """The prefix id"""
+  prefixid: Int!
+
+  """The gender id"""
+  genderid: Int!
+
+  """The grade level id"""
+  gradelevelid: Int!
+
+  """The student first name"""
+  firstname: String!
+
+  """The student last name"""
+  lastname: String!
+
+  """The student birthdate"""
+  birthdate: String!
+}
+
+type StudentClassroom {
+  """The student classroom id"""
+  student_classroom_id: Int!
+
+  """The student id"""
+  studentid: Int!
+
+  """The classroom id"""
+  classroomid: Int!
+}
+
+type Classroom {
+  """The classroom id"""
+  classroomid: Int!
+
+  """The homeroom teacher name"""
+  homeroom_teacher: String!
+
+  """The classroom name"""
+  classname: String!
+
+  """The classroom year"""
+  academic_year: Int!
+}
+
+type Gender {
+  """The gender id"""
+  genderid: Int!
+
+  """The gender name"""
+  gendername: String!
+}
+
+type Gradelevel {
+  """The grade level id"""
+  gradelevelid: Int!
+
+  """The grade level name"""
+  levelname: String!
+}
+
+type Prefix {
+  """The prefix id"""
+  prefixid: Int!
+
+  """The prefix name"""
+  prefixname: String!
+}
+
+type StudentJoin {
+  student: Student!
+  gender: Gender!
+  gradelevel: Gradelevel!
+  prefix: Prefix!
+}
+
+type StudentJoinCount {
+  student: Student!
+  gender: Gender!
+  gradelevel: Gradelevel!
+  prefix: Prefix!
+  allPage: Int!
+}
+
+type CustomClassroom {
+  classroomid: Int
+  homeroom_teacher: String
+  classname: String
+  academic_year: Int
+}
+
+type RawQuery {
+  student: Student!
+  gender: Gender!
+  classroom: CustomClassroom
+}
+
+type ClassroomCount {
+  classroom: Classroom!
+  allPage: Int!
+}
+
+type StudentClassroomJoin {
+  studentClassroom: StudentClassroom!
+  student: Student!
+  classroom: Classroom!
+}
+
+type Query {
+  students(search: String!, limit: Float!, page: Float!): [StudentJoinCount!]!
+  student(studentid: Int!): StudentJoin!
+  rawQuery: [RawQuery!]!
+  classrooms(search: String!, limit: Float!, page: Float!): [ClassroomCount!]!
+  classroom(classroomid: Int!): Classroom!
+  studentClassrooms: [StudentClassroom!]!
+  studentClassroom(classroomid: Int!): [StudentClassroomJoin!]!
+  genders: [Gender!]!
+  gradelevels: [Gradelevel!]!
+  prefixs: [Prefix!]!
+}
+
+type Mutation {
+  createStudent(createStudentInput: CreateStudentInput!): Student!
+  updateStudent(updateStudentInput: UpdateStudentInput!): Student!
+  removeStudent(studentid: Int!): Student!
+  createClassroom(createClassroomInput: CreateClassroomInput!): Classroom!
+  updateClassroom(updateClassroomInput: UpdateClassroomInput!): Classroom!
+  removeClassroom(classroomid: Int!): Classroom!
+  createStudentClassroom(createStudentClassroomInput: CreateStudentClassroomInput!): StudentClassroom!
+  updateStudentClassroom(updateStudentClassroomInput: UpdateStudentClassroomInput!): StudentClassroom!
+  removeStudentClassroom(student_classroom_id: Int!): StudentClassroom!
+}
+
+input CreateStudentInput {
+  """The prefix id"""
+  prefixid: Int!
+
+  """The gender id"""
+  genderid: Int!
+
+  """The grade level id"""
+  gradelevelid: Int!
+
+  """The student first name"""
+  firstname: String!
+
+  """The student last name"""
+  lastname: String!
+
+  """The student birthdate"""
+  birthdate: String!
+}
+
+input UpdateStudentInput {
+  """The prefix id"""
+  prefixid: Int
+
+  """The gender id"""
+  genderid: Int
+
+  """The grade level id"""
+  gradelevelid: Int
+
+  """The student first name"""
+  firstname: String
+
+  """The student last name"""
+  lastname: String
+
+  """The student birthdate"""
+  birthdate: String
+
+  """The student id"""
+  studentid: Int!
+}
+
+input CreateClassroomInput {
+  """The homeroom teacher name"""
+  homeroom_teacher: String!
+
+  """The classroom name"""
+  classname: String!
+
+  """The classroom year"""
+  academic_year: Int!
+}
+
+input UpdateClassroomInput {
+  """The homeroom teacher name"""
+  homeroom_teacher: String
+
+  """The classroom name"""
+  classname: String
+
+  """The classroom year"""
+  academic_year: Int
+
+  """The classroom id"""
+  classroomid: Int!
+}
+
+input CreateStudentClassroomInput {
+  """The student id"""
+  studentid: Int!
+
+  """The classroom id"""
+  classroomid: Int!
+}
+
+input UpdateStudentClassroomInput {
+  """The student id"""
+  studentid: Int
+
+  """The classroom id"""
+  classroomid: Int
+
+  """The student classroom id"""
+  student_classroom_id: Int!
+}
